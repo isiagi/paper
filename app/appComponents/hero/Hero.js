@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -9,7 +11,19 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+import { format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
 function Hero() {
+  const [date, setDate] = React.useState();
   return (
     <div className="pb-10">
       <div>
@@ -19,19 +33,31 @@ function Hero() {
         </h1>
         <div className="flex justify-center flex-wrap gap-3">
           <div className="flex w-full max-w-sm items-center space-x-2">
-            <Input type="email" placeholder="Search by headline" />
+            <Input type="email" placeholder="Search by actual date" />
             <Button type="submit">Search</Button>
           </div>
-          <Select>
-            <SelectTrigger className="w-[80px]">
-              <SelectValue placeholder="Year" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="1986">1986</SelectItem>
-              <SelectItem value="1987">1987</SelectItem>
-              <SelectItem value="1988">1988</SelectItem>
-            </SelectContent>
-          </Select>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant={"outline"}
+                className={cn(
+                  "w-[280px] justify-start text-left font-normal",
+                  !date && "text-muted-foreground"
+                )}
+              >
+                <CalendarIcon className="mr-2 h-4 w-4" />
+                {date ? format(date, "PPP") : <span>Pick a date</span>}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0">
+              <Calendar
+                mode="single"
+                selected={date}
+                onSelect={setDate}
+                initialFocus
+              />
+            </PopoverContent>
+          </Popover>
 
           <Select>
             <SelectTrigger className="w-[150px]">
