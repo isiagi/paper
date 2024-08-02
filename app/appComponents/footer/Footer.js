@@ -10,11 +10,13 @@ function Footer() {
         <div className="flex justify-between flex-wrap gap-10 w-full">
           <div>
             <h3 className="text-xl pb-4">NewsScrolls</h3>
+            <p className="pb-2">
+              Your Gateway to Uganda&apos;s Historical Newspapers
+            </p>
             <p className="max-w-[400px] leading-loose">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id
-              eligendi, vel doloribus quibusdam consectetur, provident dolor
-              nostrum sit possimus odit neque laborum dicta ipsa quisquam beatae
-              architecto soluta aperiam corporis.
+              Explore the past with our curated collection of articles and
+              stories. Discover the narratives that have shaped history. Easily
+              searchable, beautifully organized, and always accessible.
             </p>
           </div>
           <div>
